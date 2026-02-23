@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/assets/pressIt_logo.png" alt="PressIt logo" width="120" />
+  <img src="./public/assets/pressIt_logo.png" alt="PressIt logo" width="350" />
 </p>
 
 <p align="center">A Reddit-inspired news aggregator — React frontend for the Headless Press API</p>
@@ -19,9 +19,12 @@ PressIt is a news aggregator built with React. The goal was to recreate core Red
 
 ## Screens
 
-|                   Home Feed                   |                       Article                       |                      Topic                      |                     User                      |
-| :-------------------------------------------: | :-------------------------------------------------: | :---------------------------------------------: | :-------------------------------------------: |
-| ![Home](./planning/assets/screens/1_home.png) | ![Article](./planning/assets/screens/2_article.png) | ![Topic](./planning/assets/screens/3_topic.png) | ![User](./planning/assets/screens/4_user.png) |
+| Home                                                              | Article | Topic | User |
+| ----------------------------------------------------------------- | ------- | ----- | ---- |
+| <img src="./planning/assets/screens/1_home.png" width="250" />    |
+| <img src="./planning/assets/screens/2_article.png" width="250" /> |
+| <img src="./planning/assets/screens/3_topic.png" width="250" />   |
+| <img src="./planning/assets/screens/4_user.png" width="250" />    |
 
 ## Routes
 
