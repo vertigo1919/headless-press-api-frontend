@@ -19,7 +19,7 @@ PressIt is a news aggregator built with React. The goal was to recreate core Red
 
 ## Screens
 
-## Screens
+For full details see <a href="./planning/planning.md">💡 planning docs</a>
 
 | Home                                                           | Article                                                           | Topic                                                           | User                                                           |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -35,5 +35,9 @@ PressIt is a news aggregator built with React. The goal was to recreate core Red
 | `/u/:username`         | User profile (articles by author)       |
 
 ## Installation
+
+Add later
+
+## Tech Stack
 
 Add later
