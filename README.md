@@ -19,12 +19,11 @@ PressIt is a news aggregator built with React. The goal was to recreate core Red
 
 ## Screens
 
-| Home                                                              | Article | Topic | User |
-| ----------------------------------------------------------------- | ------- | ----- | ---- |
-| <img src="./planning/assets/screens/1_home.png" width="250" />    |
-| <img src="./planning/assets/screens/2_article.png" width="250" /> |
-| <img src="./planning/assets/screens/3_topic.png" width="250" />   |
-| <img src="./planning/assets/screens/4_user.png" width="250" />    |
+## Screens
+
+| Home                                                           | Article                                                           | Topic                                                           | User                                                           |
+| -------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------- |
+| <img src="./planning/assets/screens/1_home.png" width="260" /> | <img src="./planning/assets/screens/2_article.png" width="260" /> | <img src="./planning/assets/screens/3_topic.png" width="260" /> | <img src="./planning/assets/screens/4_user.png" width="260" /> |
 
 ## Routes
 
