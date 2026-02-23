@@ -17,9 +17,9 @@
 
 PressIt is a news aggregator built with React. The goal was to recreate the core Reddit functionalities while keeping the UI minimal while practicing React. Users can browse articles across topics, vote on content, read and post comments, and explore articles by author.It connects to my [Headless Press API](https://github.com/vertigo1919/headless-press-api) (Node + Express), which handles articles, topics, comments and voting.
 
-## Screens
+## UI Planning
 
-For full details see <a href="./planning/planning.md">💡 planning docs</a>
+For full details see <a href="./planning/planning.md">💡 planning docs</a> as well as the 🎨 [Interactive Prototype on Figma](https://www.figma.com/proto/ckT1daSU4xjWEM9DCPLZRM/Headless-Press-API-front-end?node-id=0-1&t=GSGX4uLt2lVfTIgt-1)
 
 | Home                                                           | Article                                                           | Topic                                                           | User                                                           |
 | -------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------- |
