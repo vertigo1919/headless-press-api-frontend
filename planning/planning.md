@@ -39,7 +39,7 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 | `/p/:article_id/:slug` | Post comment              | `POST /api/articles/:article_id/comments`                                  |
 | `/p/:article_id/:slug` | Delete comment            | `DELETE /api/comments/:comment_id`                                         |
 | `/p/:article_id/:slug` | Vote on article           | `PATCH /api/articles/:article_id`                                          |
-| `/u/:username`         | User's articles           | `GET /api/articles?author=:username` + GET /api/users/:username            |
+| `/u/:username`         | User's articles           | `GET /api/articles?author=:username` + `GET /api/users/:username`          |
 
 > **Note:** `GET /api/topics` is called on app mount to populate the hamburger menu topic drawer — not tied to a specific route.
 
@@ -84,10 +84,10 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 - **Article header** — topic icon, topic link, author, time since posted
 - **Full article body**
-- **Vote buttons** — upvote/downvote, one vote per session
+- **Vote buttons** — upvote/downvote, one vote per session, uses optimistic rendering
 - **Comments** — username, orange OP badge (if commenter is article author), time, vote buttons
-- **Delete button** — visible only on comments by the logged-in user
-- **"Join the conversation" bar** — sticky bottom; expands to text input with Cancel and Post
+- **Delete button** — visible only on comments by the logged-in user, uses optimistic rendering, deletes comment immediately
+- **"Join the conversation" bar** — sticky bottom; expands to text input with Cancel and Post.
 - **Dot menu** — share article
 - **User icon** (top right) — links to logged-in user profile
 - **Footer** — Home and GitHub
@@ -188,7 +188,7 @@ App
 
 ### UserContext
 
-currentUser
+`const currentUser`
 
 ### NavBar (always on)
 
@@ -215,9 +215,15 @@ currentUser
 
 #### UI: sorting
 
-- `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})` other values are votes and comments for criteria and asc for order
+- `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})`
+  other values are votes and comments for criteria and asc for order
 
-### ArticlePage (ROUTE //p/:article_id/:slug)
+#### UI: article view type (extended vs compact)
+
+- `const [viewType, setViewType]= useState("extended")`
+  other value is "compact"
+
+### ArticlePage (ROUTE /p/:article_id/:slug)
 
 #### API requests: GET article
 
@@ -231,6 +237,32 @@ currentUser
 - `const [commentsIsLoading, setCommentsIsLoading]= useState(false)`
 - `const [commentsError, setCommentsError]= useState(null)`
 
+### VoteButtons Component
+
+- `const [currentVote, setCurrentVote] = useState(0);`
+  to allow users to vote just once
+
+#### API requests: PATCH votes
+
+- `const [voteError, setVoteError]= useState(null)`
+- no isLoading state because of optimistic rendering
+
+### DeleteButton Component
+
+#### API requests: DELETE comment
+
+- `const [deleteCommentError, setDeleteCommentError]= useState(null)`
+- no isLoading state because of optimistic rendering
+
+#### API requests: POST comment
+
+- `const [postCommentError, setPostCommentError]= useState(null)`
+- `const [postCommentIsLoading, setPostCommentIsLoading]= useState(false)`
+
+#### UI: comment composer
+
+- `const [isComposerOpen, setIsComposerOpen]= useState(false)`
+
 ### TopicPage (ROUTE /p/:topic)
 
 #### API requests: GET articles
@@ -242,6 +274,10 @@ currentUser
 #### UI: sorting
 
 - `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})` other values are votes and comments for criteria and asc for order
+
+#### UI: article view type (extended vs compact)
+
+- `const [viewType, setViewType]= useState("extended")` other value is "compact"
 
 ### TopicPage (ROUTE /u/:username)
 
@@ -257,27 +293,11 @@ currentUser
 - `const [articlesIsLoading, setArticlesIsLoading]= useState(false)`
 - `const [articlesError, setArticlesError]= useState(null)`
 
-**For user interactions that change UI**, think about:
-
-- View toggle — which mode is active?
-- The comment composer — is it open or collapsed?
-- Voting — you may want optimistic UI (update immediately, then rollback on error)
-
-**For each route/page**, ask what that page *owns*:
-
-- Home/Topic page: what list of articles is it displaying? What are the current sort settings?
-- Article page: what article is loaded? What comments are loaded? Is the composer open?
-- User page: what articles are shown?
-
-**For local UI state (no lifting needed):** - `isExpanded` in `CommentComposer` — only that component ever needs to know if it's open - `currentVote` in `VoteButtons` — tracks whether the user has voted this session, purely internal - `isMenuOpen` in `Navbar` — only Navbar and its direct children care These never need lifting and never need Context. If only one component needs it — it stays there.
-
-> Go component by component in your tree, starting from the top — Context first, then page-level containers, then leaf components. For each container ask what it fetches and owns; for each leaf ask what local UI state it controls. If you find two sibling components need the same piece of state, lift it to their nearest common ancestor.
-
 ## Nice to have
 
 - Add slug to article (generated by react or better in database)
 - Skeleton loader
-- optimistic rendering
+- Make ArticleList interactive so you can vote from there too
 - Implemen Full User authentication
 - Refactor isLoading and Error status with either
   - Single string status: e.g. idle, success, loading, error
