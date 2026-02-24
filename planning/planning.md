@@ -71,8 +71,6 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 </tr>
 </table>
 
----
-
 ### 2. Single Article `/p/:article_id/:slug`
 
 <table>
@@ -95,7 +93,6 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 </td>
 </tr>
 </table>
----
 
 ### 3. Topic Page `/p/:topic`
 
@@ -117,7 +114,6 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 </td>
 </tr>
 </table>
----
 
 ### 4. User Page `/u/:username`
 
@@ -139,7 +135,6 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 </td>
 </tr>
 </table>
----
 
 ## Components
 
