@@ -39,11 +39,13 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 | `/p/:article_id/:slug` | Post comment              | `POST /api/articles/:article_id/comments`                                  |
 | `/p/:article_id/:slug` | Delete comment            | `DELETE /api/comments/:comment_id`                                         |
 | `/p/:article_id/:slug` | Vote on article           | `PATCH /api/articles/:article_id`                                          |
-| `/u/:username`         | User's articles           | `GET /api/articles?author=:username`                                       |
+| `/u/:username`         | User's articles           | `GET /api/articles?author=:username` + GET /api/users/:username            |
 
 > **Note:** `GET /api/topics` is called on app mount to populate the hamburger menu topic drawer — not tied to a specific route.
 
-> **Note:** The `:slug` in `/p/:article_id/:slug` is not stored in the database. It is generated client-side in React from the article title.
+> **Note:** The `:slug` in `/p/:article_id/:slug` is not stored in the database. It is generated client-side in React from the article title. I will implement at a later stage.
+
+> **Note:** I want to set up all routes share a common PageLayout component (Navbar + Footer) rendered via a pathless parent route using <Outlet />. Navbar and Footer only load once and persist across navigation.
 
 ## Screens & Features
 
@@ -76,7 +78,7 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 <table>
 <tr>
 <td valign="top" width="360">
-<img src="/planning/assets/screens/3_topic.png" alt="Home" width="350">
+<img src="/planning/assets/screens/2_article.png" alt="Home" width="350">
 </td>
 <td valign="top">
 
@@ -99,7 +101,7 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 <table>
 <tr>
 <td valign="top" width="360">
-<img src="/planning/assets/screens/2_article.png" alt="Home" width="350">
+<img src="/planning/assets/screens/3_topic.png" alt="Home" width="350">
 </td>
 <td valign="top">
 
@@ -144,9 +146,9 @@ App
     └── UserContext (hard-coded sample user, needed to implement delete comment and user page)
         └── Routes
             └── Route (no path) → PageLayout N.B. Navbar & Footer mount once; <Outlet /> renders active page
-                ├── Navbar
-                │   ├── Drawer (I will try to use "children" prop here)
-                │   │   └── TopicList
+                ├── Navbar (defines children as TopicList)
+                │   ├── Drawer (SOC shows children)
+                │   │   └── TopicList (receives topics from NavBar)
                 │   ├── SearchBar
                 │   └── UserAvatar
                 ├── Outlet (this is rendered dynamically based on URL)
@@ -184,13 +186,96 @@ App
 
 ## States
 
-To finish
+### UserContext
 
-- currentUser
-- isLoading
+currentUser
 
-add others, organised by component
+### NavBar (always on)
+
+API requests: GET topics
+
+- `const [topics, setTopics]= useState([])` > passed down to TopicList
+- `const [isLoading, setIsLoading]= useState(false)`
+- `const [error, setError]= useState(null)`
+- `const [isDrawerOpen, setIsDrawerOpen]= useState(false)`
+
+### HomePage (ROUTE /)
+
+API requests: GET articles
+
+- `const [articles, setArticles]= useState([])`
+- `const [isLoading, setIsLoading]= useState(false)`
+- `const [error, setError]= useState(null)`
+
+UI changes
+sorting
+
+- `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})` other values are votes and comments for criteria and asc for order
+-
+
+### ArticlePage (ROUTE //p/:article_id/:slug)
+
+API requests: GET article
+
+- `const [article, setArticle]= useState(null)` N.B. object not array
+- `const [articleIsLoading, setArticleIsLoading]= useState(false)`
+- `const [articleError, setArticleError]= useState(null)`
+
+GET comments
+
+- `const [comments, setComments]= useState([])`
+- `const [commentsIsLoading, setCommentsIsLoading]= useState(false)`
+- `const [commentsError, setCommentsError]= useState(null)`
+
+### TopicPage (ROUTE /p/:topic)
+
+API requests: GET articles
+
+- `const [articles, setArticles]= useState([])`
+- `const [isLoading, setIsLoading]= useState(false)`
+- `const [error, setError]= useState(null)`
+
+### TopicPage (ROUTE /u/:username)
+
+API requests: GET username
+
+- `const [username, setUsername]= useState(null)` N.B. object not array
+- `const [usernameIsLoading, setUsernameIsLoading]= useState(false)`
+- `const [usernameError, setUsernameError]= useState(null)`
+
+GET articles
+
+- `const [articles, setArticles]= useState([])`
+- `const [articlesIsLoading, setArticlesIsLoading]= useState(false)`
+- `const [articlesError, setArticlesError]= useState(null)`
+
+**For user interactions that change UI**, think about:
+
+- Sort/filter controls — what's currently selected?
+- View toggle — which mode is active?
+- The comment composer — is it open or collapsed?
+- Voting — you may want optimistic UI (update immediately, then rollback on error)
+
+**For each route/page**, ask what that page *owns*:
+
+- Home/Topic page: what list of articles is it displaying? What are the current sort settings?
+- Article page: what article is loaded? What comments are loaded? Is the composer open?
+- User page: what articles are shown?
+
+**For global things** (Context):
+
+- The current user — needed in Navbar, DeleteButton, CommentComposer
+
+**For local UI state (no lifting needed):** - `isExpanded` in `CommentComposer` — only that component ever needs to know if it's open - `currentVote` in `VoteButtons` — tracks whether the user has voted this session, purely internal - `isMenuOpen` in `Navbar` — only Navbar and its direct children care These never need lifting and never need Context. If only one component needs it — it stays there.
+
+> Go component by component in your tree, starting from the top — Context first, then page-level containers, then leaf components. For each container ask what it fetches and owns; for each leaf ask what local UI state it controls. If you find two sibling components need the same piece of state, lift it to their nearest common ancestor.
 
 ## Nice to have
 
-- User authentication
+- Add slug to article (generated by react or better in database)
+- Skeleton loader
+- optimistic rendering
+- Implemen Full User authentication
+- Refactor isLoading and Error status with either
+  - Single string status: e.g. idle, success, loading, error
+  - Or with [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
