@@ -75,7 +75,12 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 ### 2. Single Article `/p/:article_id/:slug`
 
-![Article](/planning/assets/screens/2_article.png)
+<table>
+<tr>
+<td valign="top" width="360">
+<img src="/planning/assets/screens/3_topic.png" alt="Home" width="350">
+</td>
+<td valign="top">
 
 - **Article header** — topic icon, topic link, author, time since posted
 - **Full article body**
@@ -87,11 +92,19 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 - **User icon** (top right) — links to logged-in user profile
 - **Footer** — Home and GitHub
 
+</td>
+</tr>
+</table>
 ---
 
 ### 3. Topic Page `/p/:topic`
 
-![Topic](/planning/assets/screens/3_topic.png)
+<table>
+<tr>
+<td valign="top" width="360">
+<img src="/planning/assets/screens/2_article.png" alt="Home" width="350">
+</td>
+<td valign="top">
 
 - **Topic header** — topic avatar and topic name
 - **Sort controls** — same options as home feed
@@ -101,11 +114,19 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 - **User icon** (top right) — links to logged-in user profile
 - **Footer** — Home and GitHub
 
+</td>
+</tr>
+</table>
 ---
 
 ### 4. User Page `/u/:username`
 
-![User](/planning/assets/screens/4_user.png)
+<table>
+<tr>
+<td valign="top" width="360">
+<img src="/planning/assets/screens/4_user.png" alt="Home" width="350">
+</td>
+<td valign="top">
 
 - **User header** — avatar, display name, `u/username`, post count
 - **Article list** — all articles by this user in card format
@@ -115,6 +136,9 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 - **User icon** (top right) — links to logged-in user profile
 - **Footer** — Home and GitHub
 
+</td>
+</tr>
+</table>
 ---
 
 ## Components
