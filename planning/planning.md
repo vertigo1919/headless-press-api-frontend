@@ -49,7 +49,12 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 ### 1. Home Feed `/`
 
+<table>
+<tr>
+<td valign="top" width="360">
 <img src="/planning/assets/screens/1_home.png" alt="Home" width="350">
+</td>
+<td valign="top">
 
 - **Search bar** with PressIt logo
 - **Hamburger menu** — opens left drawer listing all topics
@@ -61,6 +66,10 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 - **Dot menu** — share article
 - **User icon** (top right) — links to logged-in user profile
 - **Footer** — Home (`/`) and GitHub
+
+</td>
+</tr>
+</table>
 
 ---
 
