@@ -138,39 +138,48 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 ## Components
 
-```
+```text
 App
-├── Wrapper ?
-├── Navbar (changes layout depending on route — especially on article page)
-│   ├── HamburgerMenu (→ TopicList )
-│   ├── SearchBar
-│   └── UserAvatar → /u/:username
-├── Routes
-│   ├── / → HomePage
-│   │   ├── FeedControls
-│   │   │   ├── SortControls
-│   │   │   └── ViewToggle
-│   │   └── ArticleList → map ArticleCard  ← display only, links to article
-│   ├──  → TopicPage → /p/:topic
-│   │   ├── TopicHeader
-│   │   ├── FeedControls
-│   │   │   ├── SortControls
-│   │   │   └── ViewToggle
-│   │   └── ArticleList → map ArticleCard  ← display only, links to article
-│   ├── ArticlePage → /p/:article_id/:slug
-│   │   ├── ArticleHeader
-│   │   ├── ArticleBody
-│   │   ├── VoteButtons
-│   │   ├── CommentList → map Comment
-│   │   │   ├── VoteButtons
-│   │   │   └── DeleteButton (if author equals currentUser)
-│   │   └── CommentComposer (sticky)
-│   │       ├── collapsed: "Join the conversation" bar
-│   │       └── expanded: Input + Cancel + Post ← conditional on click
-│   └── /u/:username → UserPage
-│       ├── UserHeader
-│       └── ArticleList → map ArticleCard
-└── Footer
+└── BrowserRouter
+    └── UserContext (hard-coded sample user, needed to implement delete comment and user page)
+        └── Routes
+            └── Route (no path) → PageLayout N.B. Navbar & Footer mount once; <Outlet /> renders active page
+                ├── Navbar
+                │   ├── Drawer (I will try to use "children" prop here)
+                │   │   └── TopicList
+                │   ├── SearchBar
+                │   └── UserAvatar
+                ├── Outlet (this is rendered dynamically based on URL)
+                │   ├── Route "/" → HomePage
+                │   │   ├── FeedControls
+                │   │   │   ├── SortControls
+                │   │   │   └── ViewToggle
+                │   │   └── ArticleList
+                │   │       └──  map ArticleCard  ← display only, links to article
+                │   │
+                │   ├── Route "/p/:topic" → TopicPage
+                │   │   ├── TopicHeader
+                │   │   ├── FeedControls
+                │   │   └── ArticleList
+                │   │       └── map ArticleCard  ← display only, links to article
+                │   │
+                │   ├── Route "/p/:article_id/:slug" → ArticlePage
+                │   │   ├── ArticleHeader
+                │   │   ├── ArticleBody
+                │   │   ├── VoteButtons
+                │   │   ├── CommentList
+                │   │   │   └── Comment[]
+                │   │   │       ├── VoteButtons
+                │   │   │       └── DeleteButton (if author equals currentUser)
+                │   │   └── CommentComposer (collapsed vs  expanded state ← conditional on click)
+                │   │
+                │   └── Route "/u/:username" → UserPage
+                │       ├── UserHeader
+                │       └── ArticleList
+                │           └── map ArticleCard ← display only, links to article
+                │
+                └── Footer
+
 ```
 
 ## States
@@ -184,4 +193,4 @@ add others, organised by component
 
 ## Nice to have
 
-- User authentication (currently just hard-coded in constants file with currentUser equals "sampleUser" ? or a state?). Look into UseContext
+- User authentication
