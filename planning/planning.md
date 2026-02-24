@@ -192,36 +192,40 @@ currentUser
 
 ### NavBar (always on)
 
-API requests: GET topics
+#### API requests: GET topics
 
 - `const [topics, setTopics]= useState([])` > passed down to TopicList
 - `const [isLoading, setIsLoading]= useState(false)`
 - `const [error, setError]= useState(null)`
 - `const [isDrawerOpen, setIsDrawerOpen]= useState(false)`
 
+#### UI: Search bar
+
+- `const [searchInput, setSearchInput]= useState("")`
+- `const [searchQuery, setSearchQuery]= useState("")`
+- `const [searchResults, setSearchResults]= useState([])`
+
 ### HomePage (ROUTE /)
 
-API requests: GET articles
+#### API requests: GET articles
 
 - `const [articles, setArticles]= useState([])`
 - `const [isLoading, setIsLoading]= useState(false)`
 - `const [error, setError]= useState(null)`
 
-UI changes
-sorting
+#### UI: sorting
 
 - `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})` other values are votes and comments for criteria and asc for order
--
 
 ### ArticlePage (ROUTE //p/:article_id/:slug)
 
-API requests: GET article
+#### API requests: GET article
 
 - `const [article, setArticle]= useState(null)` N.B. object not array
 - `const [articleIsLoading, setArticleIsLoading]= useState(false)`
 - `const [articleError, setArticleError]= useState(null)`
 
-GET comments
+#### GET comments
 
 - `const [comments, setComments]= useState([])`
 - `const [commentsIsLoading, setCommentsIsLoading]= useState(false)`
@@ -229,21 +233,25 @@ GET comments
 
 ### TopicPage (ROUTE /p/:topic)
 
-API requests: GET articles
+#### API requests: GET articles
 
 - `const [articles, setArticles]= useState([])`
 - `const [isLoading, setIsLoading]= useState(false)`
 - `const [error, setError]= useState(null)`
 
+#### UI: sorting
+
+- `const [filter, setFilter]= useState({"criteria": "date", "order": "desc"})` other values are votes and comments for criteria and asc for order
+
 ### TopicPage (ROUTE /u/:username)
 
-API requests: GET username
+#### API requests: GET username
 
 - `const [username, setUsername]= useState(null)` N.B. object not array
 - `const [usernameIsLoading, setUsernameIsLoading]= useState(false)`
 - `const [usernameError, setUsernameError]= useState(null)`
 
-GET articles
+#### GET articles
 
 - `const [articles, setArticles]= useState([])`
 - `const [articlesIsLoading, setArticlesIsLoading]= useState(false)`
@@ -251,7 +259,6 @@ GET articles
 
 **For user interactions that change UI**, think about:
 
-- Sort/filter controls — what's currently selected?
 - View toggle — which mode is active?
 - The comment composer — is it open or collapsed?
 - Voting — you may want optimistic UI (update immediately, then rollback on error)
@@ -261,10 +268,6 @@ GET articles
 - Home/Topic page: what list of articles is it displaying? What are the current sort settings?
 - Article page: what article is loaded? What comments are loaded? Is the composer open?
 - User page: what articles are shown?
-
-**For global things** (Context):
-
-- The current user — needed in Navbar, DeleteButton, CommentComposer
 
 **For local UI state (no lifting needed):** - `isExpanded` in `CommentComposer` — only that component ever needs to know if it's open - `currentVote` in `VoteButtons` — tracks whether the user has voted this session, purely internal - `isMenuOpen` in `Navbar` — only Navbar and its direct children care These never need lifting and never need Context. If only one component needs it — it stays there.
 
