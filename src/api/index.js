@@ -1,14 +1,12 @@
 // I import the API base url from the env variables
 // This is allows me to dinamically switch between a local server and the hosted version of the API
 // depending on whethere I run npm run build or npm run dev
-
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 /* 
-I then use fetch() to talk to the API and interact with the database, an alternative would be third party library axios
-
-The pattern I follow is similar for all fetch calls:
-
+I then use fetch() to talk to the API and interact with the database, an alternative would be third party library axios.
+The pattern I follow is similar for all fetch calls, because of this I created util function handleFetchResponse
+STEPS (for learning purposes)
 1) First I make a request from an end point and I obtain a promise that resolves to a response object.
 2) If there's a network failure I am protected because the promise will reject and an error is thrown automatically (I will catch it in the react component that calls this function)
 3) The response object contains amongst other details 
@@ -16,61 +14,85 @@ The pattern I follow is similar for all fetch calls:
     an OK key that is true for  success status or fail for fail status
     a body key the value of which is the content of the response which is a redable stream
 4) Because the promise is fulffiled even if OK is false I need to use an if clause guard to thrwo an error if OK is false, I make sure to add to a key of the error the status, 
-5) Eventually I obtain the request returned body by making a second asynchornosu call through the response method json which returns a promise that resolves to the body 
-6) I retrieve the response as text first to safely handle any status code that might return an empty body (like 204). 
-7) I then conditionally parse this text into JSON with ternary operator.
-6) Finally I return the relevant data stripping the object it's wrapped in
-
-As this process is requirede for every API end point I have created a util function called handleFetchResponse
-
+5) I retrieve the response body as text first to safely handle any status code that might return an empty body (like 204). 
+6) I then conditionally parse this text into JSON with ternary operator.
+7) Finally I return the relevant data stripping the object it's wrapped in
 */
 
-// GET All Topics
+//  GET all topics > GET /api/topics
 export async function getTopics() {
   const response = await fetch(`${API_BASE_URL}/topics`, { method: 'GET' }); //  N.B GET is redundant as it's the default
   const data = await handleFetchResponse(response);
-  console.log('topics >>> ', data.topics);
   return data.topics;
 }
 
-// GET All Articles
+// GET All Articles > GET /api/topics
 export async function getArticles() {
-  const response = await fetch(`${API_BASE_URL}/articles`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const response = await fetch(`${API_BASE_URL}/articles`);
   const data = await handleFetchResponse(response);
-  console.log('articles >>> ', data.articles);
   return data.articles;
 }
 
-// GET All Users
+// GET All Users > GET /api/users
 export async function getUsers() {
-  const response = await fetch(`${API_BASE_URL}/users`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const response = await fetch(`${API_BASE_URL}/users`);
   const data = await handleFetchResponse(response);
-  console.log('users >>> ', data.users);
   return data.users;
 }
 
+//GET  single Article > GET /api/articles/:article_id
 export async function getArticleById(article_id) {
-  const response = await fetch(`${API_BASE_URL}/articles/${article_id}`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const response = await fetch(`${API_BASE_URL}/articles/${article_id}`);
   const data = await handleFetchResponse(response);
-  console.log('single article >>> ', data.article);
   return data.article;
 }
-//GET /api/articles/:article_id
 
-export async function updateVoteCount() {}
+// GET article's comments > GET /api/articles/:article_id/comments
+export async function getCommentsByArticleId(article_id) {
+  const response = await fetch(`${API_BASE_URL}/articles/${article_id}/comments`);
+  const data = await handleFetchResponse(response);
+  return data.comments;
+}
+
+// GET single user > GET /api/users/:username
+export async function getUserByUsername(username) {
+  const response = await fetch(`${API_BASE_URL}/users/${username}`);
+  const data = await handleFetchResponse(response);
+  return data.user;
+}
+
 // PATCH /api/articles/:article_id
+export async function updateVoteCount(article_id, inc_votes) {
+  const response = await fetch(`${API_BASE_URL}/articles/${article_id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    // Sending heards is essential because the server needs to know what do with the string we are about to send,
+    body: JSON.stringify({ inc_votes: inc_votes }),
+  });
+  const data = await handleFetchResponse(response);
+  return data.article; // I return the article with the updated vote count
+}
 
-export async function addCommentByArticleId() {}
-//   POST /api/articles/:article_id/comments
+// POST /api/articles/:article_id/comments
+export async function addCommentByArticleId(article_id, commentBody, commentUser) {
+  const response = await fetch(`${API_BASE_URL}/articles/${article_id}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    // Sending headers is essential because the server needs to know what do with the string we are about to send,
+    body: JSON.stringify({ username: commentUser, body: commentBody }),
+  });
+  const data = await handleFetchResponse(response);
+  return data.comment; // I return the posted comment
+}
 
-export async function getCommentsByArticleId() {}
-//   GET /api/articles/:article_id/comments
-
-export async function deleteCommentById() {}
-//   DELETE /api/comments/:comment_id
-
-export async function getUserByUsername() {}
-//   GET /api/users/:username
+// DELETE /api/comments/:comment_id
+export async function deleteCommentById(comment_id) {
+  const response = await fetch(`${API_BASE_URL}/comments/${comment_id}`, {
+    method: 'DELETE',
+  });
+  const data = await handleFetchResponse(response);
+  return data; // if sucessful data will be null as per handleFetchResponse (204 status)
+}
 
 // helper function
 async function handleFetchResponse(response) {
