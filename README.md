@@ -36,8 +36,49 @@ For full details see <a href="./planning/planning.md">💡 planning docs</a> as 
 
 ## Installation
 
-Add later
+### Prerequisites
 
-## Tech Stack
+- Node.js v20.19.6 (see `.nvmrc`)
 
-Add later
+### Setup
+
+1. Clone the frontend repository:
+
+```bash
+git clone https://github.com/vertigo1919/headless-press-api-frontend
+cd headless-press-api-frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a .env.development.local file in the project root and set the API URL to one of the following:
+
+```env
+# Option A — use the hosted API (no backend setup required)
+VITE_API_BASE_URL=https://headless-press-api.onrender.com/api
+```
+
+```env
+# Option B — run the backend locally
+# Clone https://github.com/vertigo1919/headless-press-api and follow its setup instructions
+VITE_API_BASE_URL=http://localhost:9090/api
+```
+
+```env
+# Option C — deploy your own backend to a hosting service (e.g. Render, Railway, Fly.io)
+# Clone https://github.com/vertigo1919/headless-press-api, deploy it, then set a new env variable on the hosting service you used
+VITE_API_BASE_URL=https://[your-app-name].onrender.com/api
+```
+
+### Tech Stack
+
+- Runtime: Node.js v20.19.6
+- Build Tool: Vite
+- UI Library: React v19
+- Routing: React Router v7
+- Testing: Jest
+- Code Quality: ESLint, Prettier, Husky, lint-staged
