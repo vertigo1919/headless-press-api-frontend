@@ -17,6 +17,8 @@ The pattern I follow is similar for all fetch calls:
     a body key the value of which is the content of the response which is a redable stream
 4) Because the promise is fulffiled even if OK is false I need to use an if clause guard to thrwo an error if OK is false, I make sure to add to a key of the error the status, 
 5) Eventually I obtain the request returned body by making a second asynchornosu call through the response method json which returns a promise that resolves to the body 
+6) I retrieve the response as text first to safely handle any status code that might return an empty body (like 204). 
+7) I then conditionally parse this text into JSON with ternary operator.
 6) Finally I return the relevant data stripping the object it's wrapped in
 
 As this process is requirede for every API end point I have created a util function called handleFetchResponse
@@ -47,21 +49,29 @@ export async function getUsers() {
   return data.users;
 }
 
-//   GET /api/articles/:article_id
+export async function getArticleById() {}
+//GET /api/articles/:article_id
 
-//   PATCH /api/articles/:article_id
+export async function updateVoteCount() {}
+// PATCH /api/articles/:article_id
 
-//   GET /api/articles/:article_id/comments
-
+export async function addCommentByArticleId() {}
 //   POST /api/articles/:article_id/comments
 
+export async function getCommentsByArticleId() {}
+//   GET /api/articles/:article_id/comments
+
+export async function deleteCommentById() {}
 //   DELETE /api/comments/:comment_id
 
+export async function getUserByUsername() {}
 //   GET /api/users/:username
 
 // helper function
 async function handleFetchResponse(response) {
-  const body = await response.json();
+  const text = await response.text();
+  const body = text ? JSON.parse(text) : null;
+
   if (!response.ok) {
     const error = new Error(body?.msg || 'Something went wrong');
     error.status = response.status;
