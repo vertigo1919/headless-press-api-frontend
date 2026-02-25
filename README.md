@@ -55,6 +55,22 @@ cd headless-press-api-frontend
 npm install
 ```
 
+3. Environment Variables
+
+This repository includes default environment configurations which can be changed as needed:
+
+- `.env.development` is set to http://localhost:9090/api (requires running the backend locally).
+
+- `.env.production` is set to https://headless-press-api.onrender.com/api.
+
+To use the hosted API during local development without modifying the tracked files, create a .env.development.local file in the root directory and add the following override:
+
+```
+VITE_API_BASE_URL=https://headless-press-api.onrender.com/api
+```
+
+N.B. You can replace the URL above with your own hosted backend API address if you deployed it elsewhere.
+
 3. Create a .env.development.local file in the project root and set the API URL to one of the following:
 
 ```env
