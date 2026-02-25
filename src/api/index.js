@@ -23,14 +23,43 @@ As this process is requirede for every API end point I have created a util funct
 
 */
 
-// GET Topics
+// GET All Topics
 export async function getTopics() {
   const response = await fetch(`${API_BASE_URL}/topics`, { method: 'GET' }); //  N.B GET is redundant as it's the default
   const data = await handleFetchResponse(response);
+  console.log('topics >>> ', data.topics);
   return data.topics;
 }
 
-// helper funciton
+// GET All Articles
+export async function getArticles() {
+  const response = await fetch(`${API_BASE_URL}/articles`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const data = await handleFetchResponse(response);
+  console.log('articles >>> ', data.articles);
+  return data.articles;
+}
+
+// GET All Users
+export async function getUsers() {
+  const response = await fetch(`${API_BASE_URL}/users`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const data = await handleFetchResponse(response);
+  console.log('users >>> ', data.users);
+  return data.users;
+}
+
+//   GET /api/articles/:article_id
+
+//   PATCH /api/articles/:article_id
+
+//   GET /api/articles/:article_id/comments
+
+//   POST /api/articles/:article_id/comments
+
+//   DELETE /api/comments/:comment_id
+
+//   GET /api/users/:username
+
+// helper function
 async function handleFetchResponse(response) {
   const body = await response.json();
   if (!response.ok) {
