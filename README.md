@@ -71,25 +71,6 @@ VITE_API_BASE_URL=https://headless-press-api.onrender.com/api
 
 N.B. You can replace the URL above with your own hosted backend API address if you deployed it elsewhere.
 
-3. Create a .env.development.local file in the project root and set the API URL to one of the following:
-
-```env
-# Option A — use the hosted API (no backend setup required)
-VITE_API_BASE_URL=https://headless-press-api.onrender.com/api
-```
-
-```env
-# Option B — run the backend locally
-# Clone https://github.com/vertigo1919/headless-press-api and follow its setup instructions
-VITE_API_BASE_URL=http://localhost:9090/api
-```
-
-```env
-# Option C — deploy your own backend to a hosting service (e.g. Render, Railway, Fly.io)
-# Clone https://github.com/vertigo1919/headless-press-api, deploy it, then set a new env variable on the hosting service you used
-VITE_API_BASE_URL=https://[your-app-name].onrender.com/api
-```
-
 ### Tech Stack
 
 - Runtime: Node.js v20.19.6
