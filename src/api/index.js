@@ -49,7 +49,12 @@ export async function getUsers() {
   return data.users;
 }
 
-export async function getArticleById() {}
+export async function getArticleById(article_id) {
+  const response = await fetch(`${API_BASE_URL}/articles/${article_id}`, { method: 'GET' }); //  N.B GET is redundant as it's the default
+  const data = await handleFetchResponse(response);
+  console.log('single article >>> ', data.article);
+  return data.article;
+}
 //GET /api/articles/:article_id
 
 export async function updateVoteCount() {}
