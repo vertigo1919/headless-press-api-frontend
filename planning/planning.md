@@ -43,7 +43,7 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 > **Note:** `GET /api/topics` is called on app mount to populate the hamburger menu topic drawer — not tied to a specific route.
 
-> **Note:** The `:slug` in `/p/:article_id/:slug` is not stored in the database. It is generated client-side in React from the article title. I will implement at a later stage.
+> **Note:** The /p/:topic/comments/:article_id mimicks the reddit URL. Eventually I intend to add a :slug either add it in the backend or generate it client-side in React from the article title. I will implement at a later stage.
 
 > **Note:** I want to set up all routes share a common AppShell component (Navbar + Footer) rendered via a pathless parent route using <Outlet />. Navbar and Footer only load once and persist across navigation.
 
