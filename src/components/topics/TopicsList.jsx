@@ -1,3 +1,3 @@
 export function TopicsList() {
-  return <div className="topics-list-main"></div>;
+  return <ul className="topics-list-main"></ul>;
 }

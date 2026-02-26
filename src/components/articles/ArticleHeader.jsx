@@ -1,3 +1,3 @@
 export function ArticleHeader() {
-  return <></>;
+  return <header className="article-header-main"></header>;
 }

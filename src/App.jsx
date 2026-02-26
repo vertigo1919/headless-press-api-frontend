@@ -18,7 +18,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path={PATHS.ARTICLE} element={<ArticlePage />} />
         <Route path={PATHS.TOPIC} element={<TopicPage />} />
-        <Route path={PATHS.USERNAME} element={<UserPage />} />
+        <Route path={PATHS.USER} element={<UserPage />} />
       </Route>
     </Routes>
   );

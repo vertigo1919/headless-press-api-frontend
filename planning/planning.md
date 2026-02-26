@@ -149,7 +149,7 @@ App
         └── Routes
             └── Route (no path) → AppShell N.B. Navbar & Footer mount once; <Outlet /> renders active page
                 ├── Navbar (defines children as TopicList)
-                │   ├── Drawer (SOC shows children)
+                │   ├── LeftDrawer (SOC shows children)
                 │   │   └── TopicList (receives topics from NavBar)
                 │   ├── SearchBar
                 │   └── UserAvatar

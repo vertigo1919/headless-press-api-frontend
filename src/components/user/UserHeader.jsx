@@ -1,9 +1,9 @@
-import { UserAvatar } from '../components/user/UserAvatar';
+import { UserAvatar } from './UserAvatar';
 
 export function UserHeader() {
   return (
-    <div className="user-header-main">
+    <header className="user-header-main">
       <UserAvatar />
-    </div>
+    </header>
   );
 }

@@ -3,9 +3,9 @@ import { ViewToggle } from './ViewToggle';
 
 export function FeedControls() {
   return (
-    <section className="feed-controls-main">
+    <menu className="feed-controls-main">
       <SortControls />
       <ViewToggle />
-    </section>
+    </menu>
   );
 }

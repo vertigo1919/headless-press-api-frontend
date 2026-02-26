@@ -1,3 +1,3 @@
 export function ArticleBody() {
-  return <></>;
+  return <div className="article-body-main"></div>;
 }
