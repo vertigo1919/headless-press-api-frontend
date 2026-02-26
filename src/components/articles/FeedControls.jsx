@@ -3,7 +3,7 @@ import { ViewToggle } from './ViewToggle';
 
 export function FeedControls() {
   return (
-    <section>
+    <section className="feed-controls-main">
       <SortControls />
       <ViewToggle />
     </section>

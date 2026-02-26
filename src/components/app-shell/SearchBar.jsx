@@ -1,3 +1,3 @@
 export function SearchBar() {
-  return <></>;
+  return <div className="search-bar-main"></div>;
 }

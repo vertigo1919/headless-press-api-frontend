@@ -3,9 +3,9 @@ import { ArticleList } from '../components/articles/ArticleList';
 
 export function HomePage() {
   return (
-    <div className="page home-page">
+    <section className="home-page-main">
       <FeedControls />
       <ArticleList />
-    </div>
+    </section>
   );
 }

@@ -1,3 +1,3 @@
 export function SortControls() {
-  return <></>;
+  return <div className="sort-controls-main"></div>;
 }

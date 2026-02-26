@@ -159,29 +159,46 @@ App
                 │   │   │   ├── SortControls
                 │   │   │   └── ViewToggle
                 │   │   └── ArticleList
-                │   │       └──  map ArticleCard  ← display only, links to article
-                │   │
+                │   │       └── map ArticleCard
+                │   │           ├── articleCardHeader
+                │   │           ├── articleCardBody
+                │   │           └── articleCardFooter
+                │   │               ├── VoteDisplay
+                │   │               └── CommentLinkButton
                 │   ├── Route "/p/:topic" → TopicPage
                 │   │   ├── TopicHeader
                 │   │   ├── FeedControls
                 │   │   └── ArticleList
-                │   │       └── map ArticleCard  ← display only, links to article
-                │   │
-                │   ├── Route "/p/:article_id/:slug" → ArticlePage
-                │   │   ├── ArticleHeader
-                │   │   ├── ArticleBody
-                │   │   ├── VoteButtons
+                │   │       └── map ArticleCard
+                │   │           ├── articleCardHeader
+                │   │           ├── articleCardBody
+                │   │           └── articleCardFooter
+                │   │               ├── VoteDisplay
+                │   │               └── CommentLinkButton
+                │   ├── Route "/p/:topic/comments/:article_id" → ArticlePage
+                │   │   ├── ArticleDetail
+                │   │   │   ├── ArticleHeader
+                │   │   │   ├── ArticleBody
+                │   │   │   └── ArticleFooter
+                │   │   │       ├── VoteControl
+                │   │   │       └── CommentLabelButton
                 │   │   ├── CommentList
-                │   │   │   └── Comment[]
-                │   │   │       ├── VoteButtons
-                │   │   │       └── DeleteButton (if author equals currentUser)
-                │   │   └── CommentComposer (collapsed vs  expanded state ← conditional on click)
-                │   │
+                │   │   │   └── CommentCard
+                │   │   │       ├── CommentHeader
+                │   │   │       ├── CommentBody
+                │   │   │       └── CommentFooter
+                │   │   │           ├── VoteControl
+                │   │   │           └── DeleteButton (if author equals currentUser)
+                │   │   └── CommentComposer (collapsed vs expanded state ← conditional on click)
                 │   └── Route "/u/:username" → UserPage
                 │       ├── UserHeader
                 │       └── ArticleList
-                │           └── map ArticleCard ← display only, links to article
-                │
+                │           └── map ArticleCard
+                │               ├── articleCardHeader
+                │               ├── articleCardBody
+                │               └── articleCardFooter
+                │                   ├── VoteDisplay
+                │                   └── CommentLinkButton
                 └── Footer
 
 ```

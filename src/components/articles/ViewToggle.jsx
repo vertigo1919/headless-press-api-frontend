@@ -1,3 +1,3 @@
 export function ViewToggle() {
-  return <></>;
+  return <div className="view-toggle-main"></div>;
 }

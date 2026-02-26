@@ -1,3 +1,11 @@
+import { UserHeader } from '../components/user/UserHeader';
+import { ArticleList } from '../components/articles/ArticleList';
+
 export function UserPage() {
-  return <h1>User Page</h1>;
+  return (
+    <section className="user-page-main">
+      <UserHeader />
+      <ArticleList />
+    </section>
+  );
 }
