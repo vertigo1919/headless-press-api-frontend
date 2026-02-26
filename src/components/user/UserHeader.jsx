@@ -1,9 +1,7 @@
-import { UserAvatar } from './UserAvatar';
-
 export function UserHeader() {
   return (
     <header className="user-header-main">
-      <UserAvatar />
+      <h2>User Header</h2>
     </header>
   );
 }

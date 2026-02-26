@@ -15,8 +15,8 @@ export function useFetch(getFunction, options = {}) {
       setIsLoading(true);
 
       try {
-        const fethecData = await getFunction(...params);
-        setData(fethecData);
+        const fetchedData = await getFunction(...params);
+        setData(fetchedData);
         setError(null);
       } catch (err) {
         setData(null);

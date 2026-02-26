@@ -1,3 +1,3 @@
 export function DeleteButton() {
-  return <button className="delete-button-main"></button>;
+  return <button className="delete-button-main">Delete</button>;
 }
