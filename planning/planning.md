@@ -234,13 +234,13 @@ App
 
 #### UI: sorting
 
-- `const [filter, setFilter]= useState({"sort_by": "date", "order": "desc"})`
-  other values are votes and comments for sort_by and asc for order
+- `const [sortType, setSortType]= useState(new)` // new, 'most_commented', 'least_commented', 'most_votes', 'least_votes',
+- `const [isOpen, setIsOpen] = useState(false)`
 
 #### UI: article view type (extended vs compact)
 
-- `const [viewType, setViewType]= useState("extended")`
-  other value is "compact"
+- `const [viewType, setViewType]= useState("extended")` // other value is "compact"
+- `const [isOpen, setIsOpen] = useState(false)`
 
 ### ArticlePage (ROUTE /p/:article_id/:slug)
 
