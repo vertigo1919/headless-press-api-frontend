@@ -17,6 +17,6 @@ export function useUser() {
 
 // In terms or providing the context, in order to avoid defining the user state in app.jsx (SOC!)
 // I prefer to create a custom wrappre component UserProvider. It uses children and all this component does
-// is to render what's passed from app.jsx wrapped in the provider with the context value passed down.
+// is to render what's passed from main.jsx wrapped in the provider with the context value passed down.
 // Howevre because of Vite Fast Refresh rule I can't do it here as I wouldnt be able to export it
 // as I would be exporting both a component and a non-component so I split into a sepearate file
