@@ -4,10 +4,12 @@ import { Outlet } from 'react-router-dom';
 
 export function AppShell() {
   return (
-    <>
+    <div className="app-shell">
       <NavBar />
-      <Outlet />
+      <main className="app-shell-main">
+        <Outlet />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }

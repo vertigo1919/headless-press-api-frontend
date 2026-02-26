@@ -1,3 +1,3 @@
-export function SerchBar() {
+export function SearchBar() {
   return <></>;
 }
