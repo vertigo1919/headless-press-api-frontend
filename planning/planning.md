@@ -31,21 +31,21 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 
 ## Routes
 
-| Route                  | View                      | API                                                                        |
-| ---------------------- | ------------------------- | -------------------------------------------------------------------------- |
-| `/`                    | Home feed                 | `GET /api/articles?sort_by=&order=`                                        |
-| `/p/:topic`            | Topic article list        | `GET /api/articles?topic=:topic`                                           |
-| `/p/:article_id/:slug` | Single article + comments | `GET /api/articles/:article_id` + `GET /api/articles/:article_id/comments` |
-| `/p/:article_id/:slug` | Post comment              | `POST /api/articles/:article_id/comments`                                  |
-| `/p/:article_id/:slug` | Delete comment            | `DELETE /api/comments/:comment_id`                                         |
-| `/p/:article_id/:slug` | Vote on article           | `PATCH /api/articles/:article_id`                                          |
-| `/u/:username`         | User's articles           | `GET /api/articles?author=:username` + `GET /api/users/:username`          |
+| Route                            | View                      | API                                                                        |
+| -------------------------------- | ------------------------- | -------------------------------------------------------------------------- |
+| `/`                              | Home feed                 | `GET /api/articles?sort_by=&order=`                                        |
+| `/p/:topic`                      | Topic article list        | `GET /api/articles?topic=:topic`                                           |
+| `/p/:topic/comments/:article_id` | Single article + comments | `GET /api/articles/:article_id` + `GET /api/articles/:article_id/comments` |
+| `/p/:topic/comments/:article_id` | Post comment              | `POST /api/articles/:article_id/comments`                                  |
+| `/p/:topic/comments/:article_id` | Delete comment            | `DELETE /api/comments/:comment_id`                                         |
+| `/p/:topic/comments/:article_id` | Vote on article           | `PATCH /api/articles/:article_id`                                          |
+| `/u/:username`                   | User's articles           | `GET /api/articles?author=:username` + `GET /api/users/:username`          |
 
 > **Note:** `GET /api/topics` is called on app mount to populate the hamburger menu topic drawer — not tied to a specific route.
 
 > **Note:** The `:slug` in `/p/:article_id/:slug` is not stored in the database. It is generated client-side in React from the article title. I will implement at a later stage.
 
-> **Note:** I want to set up all routes share a common PageLayout component (Navbar + Footer) rendered via a pathless parent route using <Outlet />. Navbar and Footer only load once and persist across navigation.
+> **Note:** I want to set up all routes share a common AppShell component (Navbar + Footer) rendered via a pathless parent route using <Outlet />. Navbar and Footer only load once and persist across navigation.
 
 ## Screens & Features
 
@@ -73,7 +73,9 @@ A retro-styled robot operating a printing press, surrounded by upvote/downvote a
 </tr>
 </table>
 
-### 2. Single Article `/p/:article_id/:slug`
+### 2. Single Article `/p/:topic/comments/:article_id`
+
+N.B. Eventually I want to add react generated article slug.
 
 <table>
 <tr>
@@ -145,7 +147,7 @@ App
 └── BrowserRouter
     └── UserContext (hard-coded sample user, needed to implement delete comment and user page)
         └── Routes
-            └── Route (no path) → PageLayout N.B. Navbar & Footer mount once; <Outlet /> renders active page
+            └── Route (no path) → AppShell N.B. Navbar & Footer mount once; <Outlet /> renders active page
                 ├── Navbar (defines children as TopicList)
                 │   ├── Drawer (SOC shows children)
                 │   │   └── TopicList (receives topics from NavBar)
