@@ -3,13 +3,14 @@ import { formatDistanceToNowStrict } from 'date-fns';
 // I still need to add share functionality to more button
 // will need to calculate article URL id
 
-export function ArticleCardHeader({ article }) {
-  // I may need to import as a prop viewType laterdown the line
+export function ArticleCardHeader({ article, viewType }) {
   const timeStamp = formatDistanceToNowStrict(article.created_at)
     .replace(' minutes', 'm')
     .replace(' hours', 'h')
     .replace(' days', 'd')
     .replace(' years', 'y');
+
+  const titleClass = `article-card-header-title ${viewType === 'compact' ? 'article-card-header-title-compact' : ''}`;
 
   return (
     <header className="article-card-header">
@@ -31,7 +32,7 @@ export function ArticleCardHeader({ article }) {
           </svg>
         </button>
       </div>
-      <h2>{article.title}</h2>
+      <h2 className={titleClass}>{article.title}</h2>
     </header>
   );
 }
