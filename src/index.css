@@ -12,59 +12,92 @@
   padding: 0;
 }
 
-body,
+body {
+  background: var(--color-bg);
+  color: var(--color-off-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 input,
 button,
 textarea,
 select {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-color: var(--color-bg);
-  color: var(--color-off-white);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-family: inherit;
 }
 
 main {
   flex: 1;
 }
 
-/* Footer */
+.article-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+}
+
+.article-card-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.article-card-header-topic-name {
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.article-card-header-topic-image-container {
+  background: #fff;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-navy);
+}
+
+.article-card-header-topic-image {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.article-card-header-title {
+  color: var(--color-off-white);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin-top: 5px;
+}
+
 .footer {
-  background-color: var(--color-bg);
-  border-top: 1px solid var(--color-navy);
-  padding: 2rem 1rem;
-  margin-top: auto;
   text-align: center;
+  padding: 40px 20px;
+  margin-top: auto;
+  border-top: 1px solid var(--color-navy);
 }
 
 .footer-text {
+  font-size: 14px;
   color: var(--color-off-white);
-  font-size: 0.875rem;
 }
 
 .footer-link {
   color: var(--color-orange);
-  text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
 .footer-link:hover {
   color: var(--color-cream);
   text-decoration: underline;
-}
-
-/*Components*/
-
-.article-card-header-topic-image {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
 }
