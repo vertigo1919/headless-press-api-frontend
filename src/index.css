@@ -32,6 +32,7 @@ main {
   flex: 1;
 }
 
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 40px 20px;
@@ -56,11 +57,12 @@ main {
   text-decoration: underline;
 }
 
+/* ARTICLE CARD  */
 .article-card-header {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
 }
 
 .article-card-header-meta {
@@ -116,4 +118,89 @@ main {
 
 .article-card-header-more-btn:hover {
   opacity: 1;
+}
+
+.article-card-body {
+  padding: 0 15px 12px 15px; /* No top padding needed here */
+}
+
+.article-card-body-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-off-white);
+  opacity: 0.8;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  word-wrap: break-word;
+}
+
+/* FEED CONTROLS */
+.feed-controls-main {
+  display: flex;
+  gap: 12px;
+  padding: 10px 15px;
+  align-items: center;
+  border-bottom: 1px solid var(--color-navy);
+  margin-bottom: 10px;
+}
+
+.sort-controls-main,
+.view-toggle-main {
+  position: relative;
+}
+
+.sort-controls-dropdown-trigger,
+.view-toggle-dropdown-trigger {
+  background: transparent;
+  color: var(--color-off-white);
+  border: 1px solid var(--color-navy);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sort-controls-dropdown-trigger:hover,
+.view-toggle-dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-off-white);
+}
+
+.sort-controls-dropdown-menu,
+.view-toggle-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #121212; /* Slightly lighter than pure black to see depth */
+  border: 1px solid var(--color-navy);
+  border-radius: 8px;
+  list-style: none;
+  min-width: 160px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.sort-controls-dropdown-menu button,
+.view-toggle-dropdown-menu button {
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  color: var(--color-off-white);
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sort-controls-dropdown-menu button:hover,
+.view-toggle-dropdown-menu button:hover {
+  background: var(--color-navy);
+  color: var(--color-cream);
 }
