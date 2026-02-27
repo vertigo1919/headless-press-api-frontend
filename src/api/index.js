@@ -27,8 +27,8 @@ export async function getTopics() {
 }
 
 // GET All Articles > GET /api/topics
-export async function getArticles() {
-  const response = await fetch(`${API_BASE_URL}/articles`);
+export async function getArticles(sort_by = 'created_at', order = 'desc') {
+  const response = await fetch(`${API_BASE_URL}/articles?sort_by=${sort_by}&order=${order}`);
   const data = await handleFetchResponse(response);
   return data.articles;
 }

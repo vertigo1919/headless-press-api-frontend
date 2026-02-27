@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-export function SortControls() {
+export function SortControls({ sortLabel, setSortLabel }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [sortType, setSortType] = useState('New');
 
   const sortOptions = [
     { id: 'new', label: 'New' },
@@ -18,14 +17,14 @@ export function SortControls() {
   }
 
   function handleSelection(label) {
-    setSortType(label);
+    setSortLabel(label);
     setIsOpen(false);
   }
 
   return (
     <div className="sort-controls-main">
       <button onClick={toggleDropdown} className="sort-controls-dropdown-trigger">
-        Sort: {sortType}
+        Sort: {sortLabel}
       </button>
 
       {isOpen && (

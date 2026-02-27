@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-export function ViewToggle() {
+export function ViewToggle({ viewType, setViewType }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [viewType, setViewType] = useState('extended');
 
   // handlers functions for clicks
   function toggleDropdown() {
