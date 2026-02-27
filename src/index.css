@@ -204,3 +204,41 @@ main {
   background: var(--color-navy);
   color: var(--color-cream);
 }
+
+/* LOADIND SPINNER */
+
+/* Replace your old loader CSS with this single block */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.loading-spinner::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-navy);
+  border-top-color: var(--color-orange);
+  border-radius: 50%;
+  margin-bottom: 10px;
+  animation: spin 0.8s infinite linear;
+}
+
+.loading-spinner-text {
+  color: var(--color-off-white);
+  font-size: 13px;
+  opacity: 0.7;
+  max-width: 280px;
+  line-height: 1.4;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
