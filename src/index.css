@@ -62,7 +62,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 15px 15px 5px 15px;
+  padding: 15px 15px 0px 15px;
 }
 
 .article-card-header-meta {
@@ -109,6 +109,19 @@ main {
   font-weight: 600;
   margin-top: 4px;
 }
+
+.article-card-header-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.article-card-header-title-link:hover .article-card-header-title,
+.article-card-header-title-link:hover .article-card-header-title-compact {
+  color: var(--color-orange);
+  transition: color 0.2s ease;
+}
+
 .article-card-header-more-btn {
   background: none;
   border: none;
@@ -143,6 +156,89 @@ main {
   word-wrap: break-word;
 }
 
+.article-card-footer-main {
+  padding: 0 15px 15px 15px;
+}
+
+.article-card-footer-main menu {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+}
+.article-card-footer-main menu {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+}
+
+.votes-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-navy);
+  padding: 4px 10px;
+  border-radius: 20px;
+  user-select: none;
+}
+
+.votes-display-upvote-icon,
+.votes-display-downvote-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(0.9);
+}
+
+.vote-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-off-white);
+  min-width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+.comment-link-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-navy);
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+  cursor: pointer;
+}
+
+.comment-link-button:hover {
+  background: #2a4a5f;
+}
+
+.comment-link-button:active {
+  transform: scale(0.96);
+}
+
+.comment-link-button-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: brightness(0) invert(0.9);
+}
+.comment-link-button-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-off-white);
+  line-height: 1;
+}
 /* FEED CONTROLS */
 .feed-controls-main {
   display: flex;
@@ -245,4 +341,18 @@ main {
   to {
     transform: rotate(1turn);
   }
+}
+
+.article-list-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.article-card-main {
+  border-bottom: 1px solid var(--color-navy);
+}
+
+.article-card-main:last-child {
+  border-bottom: none;
 }

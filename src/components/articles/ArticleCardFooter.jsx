@@ -1,12 +1,15 @@
 import { VoteDisplay } from '../shared/VoteDisplay';
 import { CommentLinkButton } from '../comments/CommentLinkButton';
 
-export function ArticleCardFooter() {
+export function ArticleCardFooter({ article, viewType }) {
   return (
     <footer className="article-card-footer-main">
-      <h3>Article Card Footer</h3>
       <menu>
-        <VoteDisplay /> <CommentLinkButton />
+        {viewType === 'extended' && (
+          <>
+            <VoteDisplay article={article} /> <CommentLinkButton article={article} />
+          </>
+        )}
       </menu>
     </footer>
   );

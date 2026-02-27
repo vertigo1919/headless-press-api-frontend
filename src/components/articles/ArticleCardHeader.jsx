@@ -1,9 +1,11 @@
 import { formatDistanceToNowStrict } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 // I still need to add share functionality to more button
-// will need to calculate article URL id
 
 export function ArticleCardHeader({ article, viewType }) {
+  const articlePath = `/p/${article.topic}/comment/${article.article_id}`;
+
   const timeStamp = formatDistanceToNowStrict(article.created_at)
     .replace(' minutes', 'm')
     .replace(' hours', 'h')
@@ -32,7 +34,9 @@ export function ArticleCardHeader({ article, viewType }) {
           </svg>
         </button>
       </div>
-      <h2 className={titleClass}>{article.title}</h2>
+      <Link to={articlePath} className="article-card-header-title-link">
+        <h2 className={titleClass}>{article.title}</h2>
+      </Link>
     </header>
   );
 }
