@@ -14,6 +14,7 @@ export function NavBar() {
 
   return (
     <header className="navbar">
+      <h1>Nav Bar Placeholder</h1>
       <nav className="navbar-nav">
         {/* add link to user page (must look like user menu*/}
 

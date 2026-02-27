@@ -29,7 +29,7 @@ export function HomePage() {
 
   return (
     <section className="home-page-main">
-      <h1>Home Page</h1>
+      {/* <h1>Home Page</h1> */}
       <FeedControls
         sortLabel={sortLabel}
         setSortLabel={setSortLabel}
