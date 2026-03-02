@@ -1,3 +1,3 @@
 export function ErrorBanner({ message }) {
-  return <div className="error-banner-main">Something went wront {message}</div>;
+  return <div className="error-banner-main">Something went wrong {message}</div>;
 }

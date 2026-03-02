@@ -14,13 +14,13 @@ export function LoadingSpinner() {
     return () => clearTimeout(timer);
   }, []);
 
+  const isDelayedMessage =
+    'The server is starting up, which requires a little extra time. Grab a coffee while you wait, or buy me one to help upgrade the hosting!';
+  const standardMessage = 'Loading Content';
+
   return (
     <div className="loading-spinner">
-      <p className="loading-spinner-text">
-        {isDelayed
-          ? 'This is a free tier the server is taking a while to load, it may take a while, get yourself a cofee, or buy me one so I can upgrade to a better tier!'
-          : `Loading Content`}
-      </p>
+      <p className="loading-spinner-text">{isDelayed ? isDelayedMessage : standardMessage}</p>
     </div>
   );
 }
