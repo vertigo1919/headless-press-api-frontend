@@ -1,7 +1,7 @@
-export function ArticleBody() {
+export function ArticleBody({ article }) {
   return (
-    <div className="article-body-main">
-      <h3>Article Body</h3>
+    <div className="article-body">
+      <p className="article-body-main"> {article.body} </p>
     </div>
   );
 }
