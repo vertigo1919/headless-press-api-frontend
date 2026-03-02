@@ -1,5 +1,6 @@
 import { formatDistanceToNowStrict } from 'date-fns';
 import { useShare } from '../../hooks/useShare';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 export function ArticleHeader({ article }) {
@@ -23,10 +24,16 @@ export function ArticleHeader({ article }) {
             alt={article.author}
           ></img>
         </div>
-        <div className="article-header-topic-name">p/{article.topic}</div>
-        <span className="article-header-user-name"> u/{article.author} </span>
-        <span className="article-header-separator"> · </span>
-        <span className="article-header-time-stamp">{timeStamp}</span>
+        <div className="article-header-meta-text">
+          <Link to={`/p/${article.topic}`} className="article-header-topic-name">
+            p/{article.topic}
+          </Link>
+          <div className="article-header-meta-sub">
+            <span className="article-header-user-name"> u/{article.author} </span>
+            <span className="article-header-separator"> · </span>
+            <span className="article-header-time-stamp">{timeStamp}</span>
+          </div>
+        </div>
 
         <button
           className="article-header-more-btn"
