@@ -49,6 +49,7 @@
 - [ ] Error & Loading Audit: Go through every single page. Manually trigger an error (e.g., change a URL parameter to something invalid) and ensure your UI shows a friendly "Not Found" or "Something went wrong" message instead of a blank screen. Ensure loading states display properly.
 
 - [x] CSS / Styling: Open index.css and start applying your PressIt color palette, flexbox layouts, and typography.
+- [ ] Deploly live demo
 
 **Nice to have**
 
