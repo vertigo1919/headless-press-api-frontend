@@ -1,12 +1,11 @@
 import { VoteControl } from '../shared/VoteControl';
-import { CommentLabel } from '../comments/CommentLabel';
+import { CommentLinkButton } from '../comments/CommentLinkButton';
 
-export function ArticleFooter() {
+export function ArticleFooter({ article }) {
   return (
     <footer className="article-footer-main">
-      <h3>Article Footer</h3>
-      <VoteControl />
-      <CommentLabel />
+      <VoteControl article={article} />
+      <CommentLinkButton article={article} />
     </footer>
   );
 }

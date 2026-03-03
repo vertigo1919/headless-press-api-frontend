@@ -5,7 +5,7 @@ export function CommentFooter() {
     <footer className="comment-footer-main">
       <h4>Comment Footer</h4>
       <menu className="comment-footer-buttons">
-        <VoteControl />
+        {/* <VoteControl /> */}
         <DeleteButton />
       </menu>
     </footer>

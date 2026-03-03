@@ -82,7 +82,7 @@ export async function updateCommentVote(comment_id, inc_votes, username) {
     body: JSON.stringify({ inc_votes, username }),
   });
   const data = await handleFetchResponse(response);
-  return data.comment; // updated comment with new votes
+  return data.comment; // updated comment with votes
 }
 
 // POST /api/articles/:article_id/comments

@@ -39,7 +39,7 @@ export function ArticlePage() {
 
       {commentsAreLoading && <LoadingSpinner />}
       {commentsError && <ErrorBanner message={commentsError.message} />}
-      {comments && <CommentsList comments={comments} />}
+      {comments && <CommentsList id="comments" comments={comments} />}
 
       <CommentComposer article_id={article_id} />
     </section>

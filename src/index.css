@@ -206,7 +206,7 @@ main {
   line-height: 1;
 }
 .comment-link-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   background: var(--color-navy);
@@ -217,6 +217,16 @@ main {
     background 0.2s ease,
     transform 0.1s ease;
   cursor: pointer;
+  height: auto;
+}
+
+.article-footer-main .comment-link-button {
+  padding: 0 16px;
+  height: 34px;
+}
+
+.article-footer-main .comment-link-button-count {
+  font-size: 13px;
 }
 
 .comment-link-button:hover {
@@ -466,4 +476,65 @@ main {
   line-height: 1.7;
   color: var(--color-off-white);
   opacity: 0.85;
+}
+
+/* FOOTER VOTE */
+.article-footer-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px 15px 15px;
+}
+
+.article-footer-main h3 {
+  display: none;
+}
+
+.vote-control {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-navy);
+  border-radius: 20px;
+  padding: 4px;
+  gap: 4px;
+  user-select: none;
+}
+
+.vote-control-upvote-btn,
+.vote-control-downvote-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-off-white);
+  opacity: 0.6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 6px;
+  transition:
+    opacity 0.2s,
+    color 0.2s,
+    background 0.2s;
+}
+
+.vote-control-upvote-btn:hover,
+.vote-control-downvote-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.vote-control-upvote-btn--voted,
+.vote-control-downvote-btn--voted {
+  opacity: 1;
+  color: var(--color-orange);
+}
+
+.vote-control__count {
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+  color: var(--color-off-white);
+  line-height: 1;
 }
