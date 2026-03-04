@@ -1,10 +1,11 @@
 import { CommentCard } from './CommentCard';
 
-export function CommentsList() {
+export function CommentsList({ comments }) {
   return (
     <section className="comments-list-main">
-      <h2>Comment List</h2>
-      <CommentCard />
+      {comments.map((comment) => {
+        return <CommentCard key={comment.comment_id} comment={comment} />;
+      })}
     </section>
   );
 }
