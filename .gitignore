@@ -12,7 +12,7 @@ dist-ssr/
 build/
 
 # Local env files
-.env
+.env*
 .env.local
 .env.*.local
 .local
@@ -34,3 +34,6 @@ Thumbs.db
 #Other
 *.xml
 
+
+# Local Netlify folder
+.netlify
